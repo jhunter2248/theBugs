@@ -30,20 +30,23 @@
 
 int main() {
 
-	AllInit();	
-	
+	AllInit();
+
+	S_BOARD test[1];
+	ParseFen(FENTEST, test);
+
 	S_BOARD pos[1];
-    S_SEARCHINFO info[1];
+	S_SEARCHINFO info[1];
 	info->quit = FALSE;
 	pos->HashTable->pTable = NULL;
 	InitHashTable(pos->HashTable, 1024);
-    
+
 	setbuf(stdin, NULL);
-    setbuf(stdout, NULL);
-	
-	
+	setbuf(stdout, NULL);
+
+
 	printf("Welcome to TheBugs! Type 'c' for console mode...\n");
-	
+
 	char line[256];
 	while (TRUE) {
 		memset(&line[0], 0, sizeof(line));
@@ -71,7 +74,7 @@ int main() {
 			break;
 		}
 	}
-	
+
 	free(pos->HashTable->pTable);
 	return 0;
 }

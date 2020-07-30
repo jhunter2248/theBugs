@@ -224,6 +224,8 @@ int ParseFen(char *fen, S_BOARD *pos) {
 		}
 	}
 
+	printf("game ply:%d\n", pos->gamePly);
+
 	pos->posKey = GeneratePosKey(pos);
 	UpdateListsMaterial(pos);
 
