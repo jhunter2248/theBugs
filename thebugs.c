@@ -32,17 +32,14 @@ int main() {
 
 	AllInit();
 
-	S_BOARD test[1];
-	ParseFen(FENTEST, test);
-
 	S_BOARD pos[1];
 	S_SEARCHINFO info[1];
 	info->quit = FALSE;
 	pos->HashTable->pTable = NULL;
 	InitHashTable(pos->HashTable, 1024);
 
-	setbuf(stdin, NULL);
-	setbuf(stdout, NULL);
+//	setbuf(stdin, NULL);
+//	setbuf(stdout, NULL);
 
 
 	printf("Welcome to TheBugs! Type 'c' for console mode...\n");
@@ -66,7 +63,7 @@ int main() {
 			XBoard_Loop(pos, info);
 			if(info->quit == TRUE) break;
 			continue;
-		} else if (!strncmp(line, "c",4))	{
+		} else if (!strncmp(line, "c",1))	{
 			Console_Loop(pos, info);
 			if(info->quit == TRUE) break;
 			continue;

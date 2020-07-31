@@ -2,6 +2,7 @@
 
 #include "stdio.h"
 #include "defs.h"
+#include "ctype.h"
 
 int CheckBoard(const S_BOARD *pos) {
 	int t_pceNum[13] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
@@ -210,21 +211,19 @@ int ParseFen(char *fen, S_BOARD *pos) {
 
 	// get number of plys, equal to double the full move count plus 1 if its black move
 	if(pos->side == WHITE) {
-		if(fen[1] == ' ') {
+		if(!isdigit(fen[1])) {
 			pos->gamePly = ((int)(fen[0] - '0') - 1) * 2;
 		} else {
 			pos->gamePly = ((int)(fen[0] - '0') * 10 + (int)(fen[1] - '0') - 1) * 2;
 		}
 	}
 	else {
-		if(fen[1] == ' ') {
+		if(!isdigit(fen[1])) {
 			pos->gamePly = ((int)(fen[0] - '0') - 1) * 2 + 1;
 		} else {
 			pos->gamePly = ((int)(fen[0] - '0') * 10 + (int)(fen[1] - '0') - 1) * 2 + 1;
 		}
 	}
-
-	printf("game ply:%d\n", pos->gamePly);
 
 	pos->posKey = GeneratePosKey(pos);
 	UpdateListsMaterial(pos);
