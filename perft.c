@@ -8,15 +8,15 @@ unsigned long leafNodes;
 
 void Perft(int depth, S_BOARD *pos) {
 	ASSERT(CheckBoard(pos));
-	
+
 	if(depth == 0) {
 		leafNodes++;
 		return;
 	}
-	
+
 	S_MOVELIST list[1];
 	GenerateAllMoves(pos, list);
-	
+
 	int MoveNum = 0;
 	for(MoveNum = 0; MoveNum < list->count; MoveNum++) {
 		//printf("Trying move: %s\n", PrMove(list->moves[MoveNum].move));
@@ -26,23 +26,22 @@ void Perft(int depth, S_BOARD *pos) {
 		Perft(depth - 1, pos);
 		TakeMove(pos);
 	}
-	
-	
+
 	return;
 }
 
 unsigned long PerftTest(int depth, S_BOARD *pos) {
 	ASSERT(CheckBoard(pos));
-	
+
 	//PrintBoard(pos);
-	
+
 	//printf("\nStarting Test To Depth:%d\n", depth);
-	
+
 	leafNodes = 0;
-	
+
 	S_MOVELIST list[1];
 	GenerateAllMoves(pos, list);
-	
+
 	int move;
 	int MoveNum = 0;
 	for(MoveNum = 0; MoveNum < list->count; MoveNum++) {
@@ -56,24 +55,24 @@ unsigned long PerftTest(int depth, S_BOARD *pos) {
 		long oldnodes = leafNodes - cumnodes;
 		//printf("move %d : %s : %ld\n", MoveNum + 1, PrMove(move), oldnodes);
 	}
-	
+
 	//printf("\nTest Complete : %ld nodes visited\n", leafNodes);
-	
+
 	return leafNodes;
 }
 
 void PrintPerftTest(int depth, S_BOARD *pos) {
 	ASSERT(CheckBoard(pos));
-	
+
 	PrintBoard(pos);
-	
+
 	printf("\nStarting Test To Depth:%d\n", depth);
-	
+
 	leafNodes = 0;
 	int start = GetTimeMs();
 	S_MOVELIST list[1];
 	GenerateAllMoves(pos, list);
-	
+
 	int move;
 	int MoveNum = 0;
 	for(MoveNum = 0; MoveNum < list->count; MoveNum++) {
@@ -87,9 +86,9 @@ void PrintPerftTest(int depth, S_BOARD *pos) {
 		long oldnodes = leafNodes - cumnodes;
 		printf("move %d : %s : %ld\n", MoveNum + 1, PrMove(move), oldnodes);
 	}
-	
+
 	printf("\nTest Complete : %ld nodes visited in %dms\n", leafNodes, GetTimeMs() - start);
-	
+
 	return;
 }
 
@@ -103,7 +102,7 @@ void ParsePerftFile(S_PERFTLIST *perftList) {
 	unsigned long depthInt = 0;
 	int index = 0;
 	char newline;
-	
+
 	while(fileReturn != EOF) {
 		fscanf(fp, "%[^;]s", perftList->perfts[index].fen);
 		for(int i = 0; i < 6; i++) {
@@ -112,13 +111,13 @@ void ParsePerftFile(S_PERFTLIST *perftList) {
 			depthInt = strtoul(depth[i], NULL, 10);
 			perftList->perfts[index].depth[i] = depthInt;
 		}
-		
+
 		fileReturn = fscanf(fp, "%c ", &newline);
 		perftList->count++;
 		index++;
 	}
 	//perftList->count--;
-	
+
 	fclose(fp);
 }
 

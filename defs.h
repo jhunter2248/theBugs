@@ -97,51 +97,48 @@ typedef struct {
 } S_HASHTABLE;
 
 typedef struct {
-	
 	int move;
 	int castlePerm;
 	int enPas;
 	int fiftyMove;
 	U64 posKey;
-	
+
 } S_UNDO;
 
 typedef struct {
-	
 	int pieces[BRD_SQ_NUM];
 	U64 pawns[3];
-	
+
 	int KingSq[2];
-	
+
 	int side;
 	int enPas; //Stores an enPassant square
 	int fiftyMove;
-	
+
 	int gamePly;
 	int ply;
 	int hisPly;
-	
+
 	int castlePerm; //four bits to store the castling permissions
-	
+
 	U64 posKey; //Unique key for storing the position
-	
+
 	int pceNum[13]; //stores the number of pieces for each chess piece (ex. if pceNum[2] = 2, there are 2 white knights)
 	int bigPce[2]; //stores number of pieces that arent pawns
 	int majPce[2]; //stores the number of major pieces
 	int minPce[2]; //stores the number of minor pieces
 	int material[2];
-	
+
 	S_UNDO history[MAXGAMEMOVES];
 
 	// piece list (13 types of pieces with max of 10 for each piece)
 	int pList[13][10];
-	
+
 	S_HASHTABLE HashTable[1];
 	int PvArray[MAXDEPTH];
-	
+
 	int searchHistory[13][BRD_SQ_NUM]; //moves that beat alpha but not beta?
 	int searchKillers[2][MAXDEPTH]; //beta cutoffs (the first and second best moves for each depth?)
-	
 } S_BOARD;
 
 
@@ -154,18 +151,18 @@ typedef struct {
 	int movesToGo;
 	int infinite;
 	int nullCut;
-	
+
 	long nodes;
-	
+
 	int quit;
 	int stopped;
-	
+
 	float fh;
 	float fhf;
-	
+
 	int GAME_MODE;
 	int POST_THINKING;
-	
+
 } S_SEARCHINFO;
 /* GAME MOVE */
 /* Stored in one int (32 bits)

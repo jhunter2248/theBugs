@@ -50,7 +50,7 @@ void ReadInput(S_SEARCHINFO *info) {
   int             bytes;
   char            input[256] = "", *endc;
 
-    if (InputWaiting()) {    
+    if (InputWaiting()) {
 		info->stopped = TRUE;
 		do {
 		  bytes=read(fileno(stdin),input,256);

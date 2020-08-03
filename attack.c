@@ -10,11 +10,11 @@ const int KiDir[8] = { -1, -10, 1, 10, -9, -11, 11, 9 };
 
 int SqAttacked(const int sq, const int side, const S_BOARD *pos) {
 	int pce, index, t_sq, dir;
-	
+
 	ASSERT(SqOnBoard(sq));
 	ASSERT(SideValid(side));
 	ASSERT(CheckBoard(pos));
-	
+
 	//pawns
 	if(side == WHITE) {
 		if(pos->pieces[sq-11] == wP || pos->pieces[sq-9] == wP) {
@@ -26,7 +26,7 @@ int SqAttacked(const int sq, const int side, const S_BOARD *pos) {
 			return TRUE;
 		}
 	}
-	
+
 	//knights
 	for(index = 0; index < 8; index++) {
 		pce = pos->pieces[sq + KnDir[index]];
@@ -36,7 +36,7 @@ int SqAttacked(const int sq, const int side, const S_BOARD *pos) {
 			}
 		}
 	}
-	
+
 	// rooks, queens
 	for(index = 0; index < 4; index++) {
 		dir = RkDir[index];
@@ -53,7 +53,7 @@ int SqAttacked(const int sq, const int side, const S_BOARD *pos) {
 			pce = pos->pieces[t_sq];
 		}
 	}
-	
+
 	//bishops, queens
 	for(index = 0; index < 4; index++) {
 		dir = BiDir[index];
@@ -70,7 +70,7 @@ int SqAttacked(const int sq, const int side, const S_BOARD *pos) {
 			pce = pos->pieces[t_sq];
 		}
 	}
-	
+
 	//kings
 	for(index = 0; index < 8; index++) {
 		pce = pos->pieces[sq + KiDir[index]];
@@ -80,7 +80,7 @@ int SqAttacked(const int sq, const int side, const S_BOARD *pos) {
 			}
 		}
 	}
-	
+
 	return FALSE;
 }
 
@@ -88,7 +88,7 @@ void ShowSqAtBySide(const int side, const S_BOARD *pos) {
 	int rank = 0;
 	int file = 0;
 	int sq = 0;
-	
+
 	printf("\n\nSquares attacked by: %c\n", SideChar[side]);
 	for(rank = RANK_8; rank >= RANK_1; rank--) {
 		for(file = FILE_A; file <= FILE_H; file++) {
