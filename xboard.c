@@ -81,7 +81,7 @@ void XBoard_Loop(S_BOARD *pos, S_SEARCHINFO *info) {
 	int sec;
 	int mps;
 	int move = NOMOVE;
-	int i, score;
+//	int i, score;
 	char inBuf[80], command[80];
 	int MB = 0;
 

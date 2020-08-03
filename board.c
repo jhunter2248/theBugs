@@ -93,8 +93,6 @@ int ParseFen(char *fen, S_BOARD *pos) {
 	int piece = 0;
 	int count = 0;
 	int i = 0;
-	int sq64 = 0;
-	int sq120 = 0;
 
 	ResetBoard(pos);
 
@@ -329,7 +327,6 @@ void MirrorBoard(S_BOARD *pos) {
 	//int tempPly = pos->ply;
 
 	int sq;
-	int tp;
 
 	if(pos->castlePerm & WKCA) tempCastlePerm |= BKCA;
 	if(pos->castlePerm & WQCA) tempCastlePerm |= BQCA;

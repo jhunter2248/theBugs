@@ -284,7 +284,7 @@ void SearchPosition(S_BOARD *pos, S_SEARCHINFO *info) {
 	int bestScore = -INFINITE;
 	int currentDepth = 0;
 	int pvMoves = 0;
-	int pvNum = 0;
+//	int pvNum = 0;
 
 
 	ClearForSearch(pos, info);

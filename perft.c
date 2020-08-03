@@ -49,10 +49,10 @@ unsigned long PerftTest(int depth, S_BOARD *pos) {
 		if(!MakeMove(pos, move)) {
 			continue;
 		}
-		long cumnodes = leafNodes;
+//		long cumnodes = leafNodes;
 		Perft(depth - 1, pos);
 		TakeMove(pos);
-		long oldnodes = leafNodes - cumnodes;
+		//long oldnodes = leafNodes - cumnodes;
 		//printf("move %d : %s : %ld\n", MoveNum + 1, PrMove(move), oldnodes);
 	}
 
